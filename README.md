@@ -25,9 +25,28 @@
 
 ## 👩‍💻 수행 과정
 ### 1. JAR 생성
-![image (4)](https://github.com/user-attachments/assets/b82ac597-fce5-4741-abe7-2f39ed8408f0)
-tasks 이름을 build 로 바꿔줘야 jar 파일이 build/libs/.jar 파일이 생긴다.
-![image (5)](https://github.com/user-attachments/assets/7ac001cb-3bef-4e11-bdd6-120dae248593)
+
+#### 방법 1) 명령어로 JAR 파일 생성
+
+```bash
+./gradlew clean build
+```
+
+✅ `build/libs/` 디렉터리에 `.jar` 파일이 생성됨
+
+✅ 기본적으로 `build/libs/<프로젝트명>-<버전>.jar` 경로에 저장됨
+
+#### 방법 2) Run Configurations로 들어가 Gradle Task를 만들고 Run
+
+![image (6)](https://github.com/user-attachments/assets/a615d728-309a-40b5-bf8c-cf400b5b4a44)
+
+![image (7)](https://github.com/user-attachments/assets/79dec3ea-2065-402b-bcdb-bce6687ac9e9)
+
+✅ Gradle Tasks에 이름을 build로 바꿔줘야 jar 파일이 build/libs/.jar 파일이 생성됨.
+
+#### 결과
+
+![image](https://github.com/user-attachments/assets/cd7626ef-5d87-425d-9ad7-6106e80840a0)
 
 <br>
 
