@@ -29,6 +29,8 @@ CMD ["sh", "-c", "java -jar app.jar --server.port=8080 > /app/logs/app.log 2>&1"
     - 실행 시 포트를 동적으로 지정하고 싶다면 **`--server.port=포트번호`** 옵션을 사용
 - **`> /app/logs/app.log 2>&1`** : Spring Boot 애플리케이션의 로그를 파일에 저장
 
+<br>
+
 #### 🐋 방법 2) Eclipse Temurin JRE 17 사용
 ```
 # 실행 환경: Eclipse Temurin JRE 17 기반의 이미지 사용
