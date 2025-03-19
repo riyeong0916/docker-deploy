@@ -1,13 +1,24 @@
 # docker-deploy-practice
 
-### 🎯 목표
+## 🎯 목표
 ✅ **Spring Boot JAR 파일을 Docker Image로 빌드**  
+
 ✅ **Docker Image를 최적화하여 Deploy 효율성 고려**
 
+<br>
 
-### 1. JAR 생성
+## 🔍 Docker Image가 필요한 이유
+**1️⃣ Image 크기 감소** : 불필요한 파일 및 라이브러리 제거 및 경량 베이스 이미지 사용
 
-### 2. Dockerfile 작성
+**2️⃣ 빌드 및 배포 속도 향상** : 작은 이미지는 빠르게 다운로드 및 배포 가능 
+
+**3️⃣ 컨테이너 실행 속도 및 성능 향상** : 적은 리소스로 컨테이너 실행 가능 (RAM, CPU 사용 절감)
+
+<br>
+
+## 1. JAR 생성
+
+## 2. Dockerfile 작성
 #### 🐋 방법 1) Eclipse Temurin JRE 17 기반 Alpine 사용
 ```
 # 실행 환경: JRE 17이 포함된 경량 Alpine 기반 이미지 사용
@@ -46,12 +57,6 @@ COPY step01_basic-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-### 3. Docker Container 실행 정리 
-
-
-
-
-
 ### 🚀 eclipse-temurin:17-jre vs. eclipse-temurin:17-jre-alpine 차이점
 | 이미지 | 설명 | 크기 |
 |--------|------|------|
@@ -77,7 +82,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 <br>
 
-## 📝 Spring Boot JAR의 Docker 이미지 빌드 및 배포 과정
+## 3. Spring Boot JAR의 Docker 이미지 빌드 및 배포 과정
 
 ### 📤 Docker 이미지 빌드 및 Docker Hub에 이미지 업로드
 
