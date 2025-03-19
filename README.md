@@ -52,4 +52,26 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 
 
-### eclipse-temurin:17-jre vs. eclipse-temurin:17-jre-alpine 차이점
+### 🚀 eclipse-temurin:17-jre vs. eclipse-temurin:17-jre-alpine 차이점
+| 이미지 | 설명 | 크기 |
+|--------|------|------|
+| **eclipse-temurin:17-jre** | Debian 기반, 안정적이고 범용적으로 사용 가능 | 🚀 약 **157MB** |
+| **eclipse-temurin:17-jre-alpine** | Alpine Linux 기반, 초경량 버전 | ⚡ 약 **43MB** |
+
+**1️⃣ 운영체제 기반**
+- `eclipse-temurin:17-jre` → **Debian 기반**
+- `eclipse-temurin:17-jre-alpine` → **Alpine Linux 기반 (가벼움)**
+
+**2️⃣ 컨테이너 크기**
+- `eclipse-temurin:17-jre` → **157MB** (Debian 기반으로 안정적)
+- `eclipse-temurin:17-jre-alpine` → **43MB** (초경량)
+
+**3️⃣ 패키지 관리자**
+- `eclipse-temurin:17-jre` → `apt` 사용 (Debian 기반)
+- `eclipse-temurin:17-jre-alpine` → `apk` 사용 (Alpine Linux 기반)
+
+**4️⃣ 성능 및 호환성**
+- **Alpine은 `musl` 라이브러리를 사용** (`glibc` X)
+- 일부 Java 애플리케이션이 **Alpine에서 제대로 실행되지 않을 수 있음**
+- **특히, JNI(Java Native Interface) 기반의 네이티브 라이브러리 사용 시 문제 발생 가능**
+
