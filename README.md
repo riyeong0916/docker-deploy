@@ -5,6 +5,8 @@
 2. [🔍 Docker Image 최적화가 필요한 이유](#-docker-image-최적화가-필요한-이유)<br>
 3. [👩‍💻 수행 과정](#-수행-과정)<br>
 
+<br>
+
 ## 🎯 목표
 ✅ **Spring Boot JAR 파일을 Docker Image로 빌드**  
 
@@ -22,13 +24,16 @@
 <br>
 
 ## 👩‍💻 수행 과정
-## 1. JAR 생성
+### 1. JAR 생성
 ![image (4)](https://github.com/user-attachments/assets/b82ac597-fce5-4741-abe7-2f39ed8408f0)
 tasks 이름을 build 로 바꿔줘야 jar 파일이 build/libs/.jar 파일이 생긴다.
 ![image (5)](https://github.com/user-attachments/assets/7ac001cb-3bef-4e11-bdd6-120dae248593)
 
-## 2. Dockerfile 작성
-### 🐋 방법 1) Eclipse Temurin JRE 17 기반 Alpine 사용
+<br>
+
+
+### 2. Dockerfile 작성
+#### 🐋 방법 1) Eclipse Temurin JRE 17 기반 Alpine 사용
 ```
 # 실행 환경: JRE 17이 포함된 경량 Alpine 기반 이미지 사용
 FROM eclipse-temurin:17-jre-alpine
@@ -51,7 +56,7 @@ CMD ["sh", "-c", "java -jar app.jar --server.port=8080 > /app/logs/app.log 2>&1"
 
 <br>
 
-### 🐋 방법 2) Eclipse Temurin JRE 17 사용
+#### 🐋 방법 2) Eclipse Temurin JRE 17 사용
 ```
 # 실행 환경: Eclipse Temurin JRE 17 기반의 이미지 사용
 FROM eclipse-temurin:17-jre
@@ -66,11 +71,11 @@ COPY step01_basic-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-### 🚀 eclipse-temurin:17-jre vs. eclipse-temurin:17-jre-alpine 차이점
+#### 🚀 `eclipse-temurin:17-jre` vs. `eclipse-temurin:17-jre-alpine` 차이점
 | 이미지 | 설명 | 크기 |
 |--------|------|------|
-| **eclipse-temurin:17-jre** | Debian 기반, 안정적이고 범용적으로 사용 가능 | 🚀 약 **157MB** |
-| **eclipse-temurin:17-jre-alpine** | Alpine Linux 기반, 초경량 버전 | ⚡ 약 **43MB** |
+| **`eclipse-temurin:17-jre`** | Debian 기반, 안정적이고 범용적으로 사용 가능 | 🚀 약 **157MB** |
+| **`eclipse-temurin:17-jre-alpine`** | Alpine Linux 기반, 초경량 버전 | ⚡ 약 **43MB** |
 
 **1️⃣ 운영체제 기반**
 - `eclipse-temurin:17-jre` → **Debian 기반**
@@ -91,9 +96,9 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 <br>
 
-## 3. Spring Boot JAR의 Docker 이미지 빌드 및 배포 과정
+### 3. Spring Boot JAR의 Docker 이미지 빌드 및 배포 과정
 
-### 📤 Docker 이미지 빌드 및 Docker Hub에 이미지 업로드
+#### 📤 Docker 이미지 빌드 및 Docker Hub에 이미지 업로드
 
 ```bash
 # 1️⃣ Java 17 JRE 환경을 제공하는 Eclipse Temurin 이미지 다운로드
@@ -127,7 +132,7 @@ docker images
 docker push <DockerHubUserName>/my-spring-app:1.0
 ```
 
-### 📥 Docker Hub에서 이미지 받아와 실행
+#### 📥 Docker Hub에서 이미지 받아와 실행
 
 ```bash
 # Docker Hub에서 이미지 다운로드
