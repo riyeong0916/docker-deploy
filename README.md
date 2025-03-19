@@ -19,7 +19,7 @@
 ## 1. JAR 생성
 
 ## 2. Dockerfile 작성
-#### 🐋 방법 1) Eclipse Temurin JRE 17 기반 Alpine 사용
+### 🐋 방법 1) Eclipse Temurin JRE 17 기반 Alpine 사용
 ```
 # 실행 환경: JRE 17이 포함된 경량 Alpine 기반 이미지 사용
 FROM eclipse-temurin:17-jre-alpine
@@ -42,7 +42,7 @@ CMD ["sh", "-c", "java -jar app.jar --server.port=8080 > /app/logs/app.log 2>&1"
 
 <br>
 
-#### 🐋 방법 2) Eclipse Temurin JRE 17 사용
+### 🐋 방법 2) Eclipse Temurin JRE 17 사용
 ```
 # 실행 환경: Eclipse Temurin JRE 17 기반의 이미지 사용
 FROM eclipse-temurin:17-jre
