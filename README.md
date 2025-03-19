@@ -75,3 +75,50 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 - 일부 Java 애플리케이션이 **Alpine에서 제대로 실행되지 않을 수 있음**
 - **특히, JNI(Java Native Interface) 기반의 네이티브 라이브러리 사용 시 문제 발생 가능**
 
+<br>
+
+## 📝 Spring Boot JAR의 Docker 이미지 빌드 및 배포 과정
+
+### 📤 Docker 이미지 빌드 및 Docker Hub에 이미지 업로드
+
+```bash
+# 1️⃣ Java 17 JRE 환경을 제공하는 Eclipse Temurin 이미지 다운로드
+docker pull eclipse-temurin:17-jre
+
+# 2️⃣ Docker Hub 로그인
+docker login
+
+# 3️⃣ 현재 디렉터리에 있는 Dockerfile을 사용하여 Docker 이미지 빌드
+docker build -t <DockerHubUserName>/my-spring-app:1.0 .
+
+# 4️⃣ 8080 포트를 사용 중인 프로세스 확인 및 종료
+sudo lsof -i :8080        # 8080 포트를 사용하는 프로세스 확인
+sudo kill -9 <PID>        # 확인된 PID의 프로세스를 강제 종료
+
+# 5️⃣ 8080 포트를 사용하는 기존 컨테이너 확인 및 삭제
+docker ps --filter "publish=8080"  # 실행 중인 컨테이너 확인
+docker rm <Container ID>           # 해당 컨테이너 삭제
+docker ps --filter "publish=8080"  # 삭제 확인
+
+# 6️⃣ 새로운 Spring Boot 컨테이너 실행 (8080 포트 매핑)
+docker run -d --name springapp -p 8080:8080 <DockerHubUserName>/my-spring-app:1.0
+
+# 7️⃣ 실행 중인 Spring Boot 컨테이너 로그 확인
+docker logs -f springapp
+
+# 8️⃣ 현재 로컬에 존재하는 Docker 이미지 목록 확인
+docker images 
+
+# 9️⃣ Docker Hub에 이미지 푸시 (업로드)
+docker push <DockerHubUserName>/my-spring-app:1.0
+```
+
+### 📥 Docker Hub에서 이미지 받아와 실행
+
+```bash
+# Docker Hub에서 이미지 다운로드
+docker pull <DockerHubUserName>/my-spring-app:1.0
+
+# 다운로드한 이미지로 컨테이너 실행
+docker run -d --name springapp -p 8080:8080 <DockerHubUserName>/my-spring-app:1.0
+```
